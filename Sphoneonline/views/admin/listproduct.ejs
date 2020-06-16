@@ -1,0 +1,139 @@
+<html>
+
+<head>
+  <%- include('./Layout/head')%>
+  <script>
+    function previewImage(input) {
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        document.getElementById("imgProduct").src = evt.target.result;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+
+    function details(id, name, price, catID, image) {
+      document.getElementById("txtID").value = id;
+      document.getElementById("txtName").value = name;
+      document.getElementById("txtPrice").value = price;
+      document.getElementById("cmbCategory").value = catID;
+      document.getElementById("imgProduct").src = "data:image/jpg;base64," + image;
+      document.getElementById("btnUpdate").style.display = "inline";
+      document.getElementById("btnDelete").style.display = "inline";
+    }
+  </script>
+</head>
+
+<body class="admin">
+  <%- include('./Layout/header')%>
+  <%- include('./Layout/menu') %>
+  <div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+            <h2 class="text-center">PRODUCT LIST</h2>
+            <table class="table" border="1">
+              <tr class="border-0">
+                <th class="border-0">ID</th>
+                <th class="border-0">Name</th>
+                <th class="border-0">Price</th>
+                <th class="border-0">Creation date</th>
+                <th class="border-0">Category</th>
+                <th class="border-0">Image</th>
+              </tr>
+
+              <%  for (var item of prods) {  %>
+              <tr class="table"
+                onclick="details('<%=item._id%>', '<%=item.name%>', '<%=item.price%>', '<%=item.category.id%>', '<%=item.image%>')">
+                <th class="border-0"><%=item._id%></th>
+                <td class="border-0"><%=item.name%></td>
+                <td class="border-0"><%=item.price%></td>
+                <td class="border-0"><%=new Date(item.cdate).toLocaleString()%></td>
+                <td class="border-0"><%=item.category.name%></td>
+                <td class="border-0"><img src="data:image/jpg;base64,<%=item.image%>" width="100" height="100" /></td>
+              </tr>
+              <%  } %>
+              <tr>
+                <td colspan="6">
+                  <%  for (var index = 1; index <= noPages; index++) {
+                  if (index == curPage) { %>
+                  | <b><%=index%></b> |
+                  <%    } else {  %>
+                  | <a href="./listproduct?page=<%=index%>"><%=index%></a> |
+                  <%    } } %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
+      <div class="card">
+        <h5 class="card-header">PRODUCT DETAIL</h5>
+        <div class="card-body">
+          <form id="form" novalidate="" data-parsley-validate="" method="POST" enctype="multipart/form-data">
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right" for="inputEmail2">ID</label>
+              <div class="col-9 col-lg-10">
+                <input class="form-control" type="text" id="txtID" name="txtID" readonly />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right" for="txtName">Name</label>
+              <div class="col-9 col-lg-10">
+                <input class="form-control" type="text" id="txtName" name="txtName" required />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right" for="txtPrice">Price</label>
+              <div class="col-9 col-lg-10">
+                <input class="form-control" type="number" id="txtPrice" name="txtPrice" min="1" max="999" required />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right" for="cmbCategory">Category</label>
+              <div class="col-9 col-lg-10">
+                <select class="form-control" id="cmbCategory" name="cmbCategory">
+                  <%  for (var cat of cats) { %>
+                  <option value="<%=cat._id%>"><%=cat.name%></option>
+                  <%  } %>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right" for="inputPassword2">Image</label>
+              <div class="col-9 col-lg-10">
+                <input class="form-control" type="file" name="fileImage" accept="image/jpeg, image/png, image/gif"
+                  onchange="previewImage(this)" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-3 col-lg-2 col-form-label text-right" for="inputPassword2"></label>
+              <div class="col-3 col-lg-6">
+                <img id="imgProduct" width="300" height="300" />
+              </div>
+            </div>
+            <div class="row pt-2 pt-sm-5 mt-1">
+              <div class="col-sm-6 pl-0">
+                <p class="text-right">
+                  <button class="btn btn-space btn-primary" type="submit" formaction="./addproduct">ADD NEW</button>
+                  <button class="btn btn-space btn-primary" type="submit" formaction="./updateproduct" id="btnUpdate"
+                    style="display: none">UPDATE</button>
+                  <button class="btn btn-space btn-primary" type="submit" formaction="./deleteproduct" id="btnDelete"
+                    style="display: none" onclick="return confirm('ARE YOU SURE?')">DELETE</button>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <%- include('./Layout/footer')%>
+    </div>
+  </div>
+  <div class="inline" style="width: 40px"></div>
+  <div class="float-clear"></div>
+  <%- include('./Layout/foot')%>
+</body>
+
+</html>

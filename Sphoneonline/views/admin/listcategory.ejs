@@ -1,0 +1,84 @@
+<head>
+  <%- include('./Layout/head')%>
+  <script>
+    function details(id, name) {
+
+      document.getElementById("txtID").value = id;
+
+      document.getElementById("txtName").value = name;
+
+      document.getElementById("btnUpdate").style.display = "inline";
+
+      document.getElementById("btnDelete").style.display = "inline";
+
+    }
+  </script>
+</head>
+
+<body class="admin">
+  <%- include('./Layout/header')%>
+  <%- include('./Layout/menu') %>
+  <div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+            <h1 class="text-center">CATEGORY LIST</h1>
+            <table class="table" border="1">
+              <tr class="border-0">
+                <th class="border-0">ID</th>
+                <th class="border-0">Name</th>
+              </tr>
+              <%  for (var item of cats) {  %>
+              <tr class="table" onclick="details('<%=item._id%>', '<%=item.name%>')">
+                <th class="border-0"><%=item._id%></th>
+                <th class="border-0"><%=item.name%></th>
+              </tr>
+              <%  } %>
+            </table>
+          </div>
+          <div class="inline" style="width: 40px"></div>
+          <br /><br />
+          <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="card">
+              <h5 class="card-header">CATEGORY DETAIL</h5>
+              <div class="card-body">
+                <form id="form" novalidate="" data-parsley-validate="" method="POST">
+                  <div class="form-group row">
+                    <label class="col-3 col-lg-2 col-form-label text-right" for="inputEmail2">ID</label>
+                    <div class="col-9 col-lg-10">
+                      <input class="form-control" type="text" id="txtID" name="txtID" readonly />
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-3 col-lg-2 col-form-label text-right" for="inputPassword2">Name</label>
+                    <div class="col-9 col-lg-10">
+                      <input class="form-control" type="text" id="txtName" name="txtName" required />
+                    </div>
+                  </div>
+                  <div class="row pt-2 pt-sm-5 mt-1">
+                    <div class="col-sm-6 pl-0">
+                      <p class="text-right">
+                        <button class="btn btn-space btn-primary" type="submit" formaction="./addcategory">ADD
+                          NEW</button>
+                        <button class="btn btn-space btn-primary" type="submit" formaction="./updatecategory"
+                          id="btnUpdate" style="display: none">UPDATE</button>
+                        <button class="btn btn-space btn-primary" type="submit" formaction="./deletecategory"
+                          id="btnDelete" style="display: none" onclick="return confirm('ARE YOU SURE?')">DELTE</button>
+                      </p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="float-clear"></div>
+        </div>
+      </div>
+    </div>
+    <%- include('./Layout/footer')%>
+    <%- include('./Layout/foot')%>
+  </div>
+</body>
+
+</html>
