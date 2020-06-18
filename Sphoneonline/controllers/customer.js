@@ -16,7 +16,7 @@ router.get(['/', '/home'], async function (req, res) {
   var newproducts = await ProductDAO.selectTopNew(3);
   var hotproducts = await ProductDAO.selectTopHot(3);
   var allproducts = await ProductDAO.selectAll();
-  res.render('../views/customer/homelayout.ejs', { cats: categories, newprods: newproducts, hotprods: hotproducts , allprods : allproducts});
+  res.render('../views/customer/homeLayout.ejs', { cats: categories, newprods: newproducts, hotprods: hotproducts ,allprods :allproducts });
 });
 // product
 router.get('/listproduct', async function (req, res) {
