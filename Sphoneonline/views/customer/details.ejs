@@ -1,48 +1,128 @@
-<html>
-
-<head>
-  <link href="/css/styles.css" type="text/css" rel="stylesheet" />
-</head>
+<%- include('./Layout/head')%>
 
 <body class="customer">
-  <%- include('./_menu.ejs') %>
-  <%- include('./_inform.ejs') %>
-  <div class="align-center">
-    <h2 class="text-center">PRODUCT DETAILS</h2>
-    <figure class="caption-right">
-      <img src="data:image/jpg;base64,<%=prod.image%>" width="400" height="400" />
-      <figcaption>
-        <form action="./add2cart" method="POST">
-          <table>
-            <tr>
-              <td align="right">ID:</td>
-              <td><%=prod._id%></td>
-            <tr>
-            <tr>
-              <td align="right">Name:</td>
-              <td><%=prod.name%></td>
-            <tr>
-            <tr>
-              <td align="right">Price:</td>
-              <td><%=prod.price%></td>
-            <tr>
-            <tr>
-              <td align="right">Category:</td>
-              <td><%=prod.category.name%></td>
-            <tr>
-            <tr>
-              <td align="right">Quantity:</td>
-              <td><input type="number" name="txtQuantity" value="1" min="1" max="99" required /></td>
-            <tr>
-            <tr>
-              <td><input type="hidden" name="txtID" value="<%=prod._id%>" /></td>
-              <td><input type="submit" value="ADD TO CART" /></td>
-            </tr>
-          </table>
-        </form>
-      </figcaption>
-    </figure>
-  </div>
+  <%- include('./Layout/header')%>
+  <section class="sec-product-detail bg0 p-t-65 p-b-60">
+    <form action="./add2cart" method="POST">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-7 p-b-30">
+            <div class="p-l-25 p-r-30 p-lr-0-lg">
+              <div class="wrap-slick3 flex-sb flex-w">
+                <div class="slick3 gallery-lb slick-initialized slick-slider slick-dotted">
+                  <div class="slick-list draggable">
+                    <div class="slick-track" style="width: 1800px; opacity: 1;">
+                      <div tabindex="0" class="item-slick3 slick-slide slick-current slick-active" id="slick-slide10"
+                        role="tabpanel" aria-hidden="false" aria-describedby="slick-slide-control10"
+                        style="left: 0px; top: 0px; width: 600px; position: relative; z-index: 999; opacity: 1;"
+                        data-thumb="images/product-detail-01.jpg" data-slick-index="0">
+
+                        <div class="wrap-pic-w pos-relative">
+                          <img src="data:image/jpg;base64,<%=prod.image%>" height="600px" />
+
+                          <a tabindex="0" class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                            href="data:image/jpg;base64,<%=prod.image%>">
+                            <i class="fa fa-expand"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5 p-b-30">
+            <div class="p-r-50 p-t-5 p-lr-0-lg">
+              <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                <td><%=prod.name%></td>
+              </h4>
+
+              <span class="mtext-106 cl2">
+                <td><%=prod.price%> VNĐ</td>
+              </span>
+
+              <!--  -->
+              <div class="p-t-33">
+                <div class="flex-w flex-r-m p-b-10">
+                  <div class="size-203 flex-c-m respon6">
+                    <b>Category : </b>
+                  </div>
+
+                  <div class="size-204 respon6-next">
+                    <b><%=prod.category.name%> </b>
+                  </div>
+                </div>
+
+                <div class="flex-w flex-r-m p-b-10">
+                  <div class="size-204 flex-w flex-m respon6-next">
+                    <div>
+                      <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                          <i class="fs-16 zmdi zmdi-minus"></i>
+                        </div>
+
+                        <input name="txtQuantity" class="mtext-104 cl3 txt-center num-product" type="number" value="1"
+                          min="1" max="99" required>
+
+
+                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                          <i class="fs-16 zmdi zmdi-plus"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                      <tr>
+                        <td><input type="hidden" name="txtID" value="<%=prod._id%>" /></td>
+                        <td><input type="submit" value="ADD TO CART"
+                            class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" />
+                        </td>
+                      </tr>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!--  -->
+              <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                <div class="flex-m bor9 p-r-10 m-r-11">
+                  <a class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" href="#"
+                    data-tooltip="Add to Wishlist">
+                    <i class="zmdi zmdi-favorite"></i>
+                  </a>
+                </div>
+
+                <a class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" href="#"
+                  data-tooltip="Facebook">
+                  <i class="fa fa-facebook"></i>
+                </a>
+
+                <a class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" href="#"
+                  data-tooltip="Twitter">
+                  <i class="fa fa-twitter"></i>
+                </a>
+
+                <a class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" href="#"
+                  data-tooltip="Google Plus">
+                  <i class="fa fa-google-plus"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+        <span class="stext-107 cl6 p-lr-25">
+          Categories: <%=prod.category.name%>
+        </span>
+      </div>
+    </form>
+  </section>
+  <%- include('./Layout/footer')%>
+  <%- include('./Layout/foot')%>
 </body>
 
 </html>

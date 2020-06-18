@@ -27,49 +27,8 @@
   <%- include('./Layout/header')%>
   <%- include('./Layout/menu') %>
   <div class="dashboard-wrapper">
-    <div class="container-fluid dashboard-content">
-      <div class="row">
-        <div class="col-xl-12">
-          <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
-            <h2 class="text-center">PRODUCT LIST</h2>
-            <table class="table" border="1">
-              <tr class="border-0">
-                <th class="border-0">ID</th>
-                <th class="border-0">Name</th>
-                <th class="border-0">Price</th>
-                <th class="border-0">Creation date</th>
-                <th class="border-0">Category</th>
-                <th class="border-0">Image</th>
-              </tr>
-
-              <%  for (var item of prods) {  %>
-              <tr class="table"
-                onclick="details('<%=item._id%>', '<%=item.name%>', '<%=item.price%>', '<%=item.category.id%>', '<%=item.image%>')">
-                <th class="border-0"><%=item._id%></th>
-                <td class="border-0"><%=item.name%></td>
-                <td class="border-0"><%=item.price%></td>
-                <td class="border-0"><%=new Date(item.cdate).toLocaleString()%></td>
-                <td class="border-0"><%=item.category.name%></td>
-                <td class="border-0"><img src="data:image/jpg;base64,<%=item.image%>" width="100" height="100" /></td>
-              </tr>
-              <%  } %>
-              <tr>
-                <td colspan="6">
-                  <%  for (var index = 1; index <= noPages; index++) {
-                  if (index == curPage) { %>
-                  | <b><%=index%></b> |
-                  <%    } else {  %>
-                  | <a href="./listproduct?page=<%=index%>"><%=index%></a> |
-                  <%    } } %>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="col-xl-12 col-lg-6 col-md-12 col-sm-12 col-12">
-      <div class="card">
+      <div class="card"><br /><br /><br /><br />
         <h5 class="card-header">PRODUCT DETAIL</h5>
         <div class="card-body">
           <form id="form" novalidate="" data-parsley-validate="" method="POST" enctype="multipart/form-data">
@@ -128,8 +87,49 @@
           </form>
         </div>
       </div>
-      <%- include('./Layout/footer')%>
     </div>
+    <div class="container-fluid dashboard-content">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+            <h2 class="text-center">PRODUCT LIST</h2>
+            <table class="table" border="1">
+              <tr class="border-0">
+                <th class="border-0">ID</th>
+                <th class="border-0">Name</th>
+                <th class="border-0">Price</th>
+                <th class="border-0">Creation date</th>
+                <th class="border-0">Category</th>
+                <th class="border-0">Image</th>
+              </tr>
+
+              <%  for (var item of prods) {  %>
+              <tr class="table"
+                onclick="details('<%=item._id%>', '<%=item.name%>', '<%=item.price%>', '<%=item.category.id%>', '<%=item.image%>')">
+                <th class="border-0"><%=item._id%></th>
+                <td class="border-0"><%=item.name%></td>
+                <td class="border-0"><%=item.price%></td>
+                <td class="border-0"><%=new Date(item.cdate).toLocaleString()%></td>
+                <td class="border-0"><%=item.category.name%></td>
+                <td class="border-0"><img src="data:image/jpg;base64,<%=item.image%>" width="100" height="100" /></td>
+              </tr>
+              <%  } %>
+              <tr>
+                <td colspan="6">
+                  <%  for (var index = 1; index <= noPages; index++) {
+                  if (index == curPage) { %>
+                  | <b><%=index%></b> |
+                  <%    } else {  %>
+                  | <a href="./listproduct?page=<%=index%>"><%=index%></a> |
+                  <%    } } %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('./Layout/footer')%>
   </div>
   <div class="inline" style="width: 40px"></div>
   <div class="float-clear"></div>
