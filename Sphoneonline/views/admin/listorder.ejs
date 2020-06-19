@@ -7,71 +7,11 @@
 <body class="admin">
   <%- include('./Layout/header')%>
   <%- include('./Layout/menu') %>
-  <!-- <%  if (orders) { %>
-  <div class="align-center">
-    <h2 class="text-center">ORDER LIST</h2>
-    <table class="datatable" border="1">
-      <tr class="datatable">
-        <th>ID</th>
-        <th>Creation date</th>
-        <th>Cust.name</th>
-        <th>Cust.phone</th>
-        <th>Total</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      <%  for (var item of orders) { %>
-      <tr class="datatable" onclick="window.location='./listorder?id=<%=item._id%>'">
-        <th><%=item._id%></th>
-        <td><%=new Date(item.cdate).toLocaleString()%></td>
-        <td><%=item.customer.name%></td>
-        <td><%=item.customer.phone%></td>
-        <td><%=item.total%></td>
-        <td><%=item.status%></td>
-        <td>
-          <%  if (item.status == 'PENDING') {  %>
-          <a href="./updatestatus?status=APPROVED&id=<%=item._id%>">APPROVE</a>
-          ||
-          <a href="./updatestatus?status=CANCELED&id=<%=item._id%>">CANCEL</a>
-          <%  } %>
-        </td>
-      </tr>
-      <%  } %>
-    </table>
-  </div>
-  <%  } %>
-  <%  if (order) { %> -->
-  <!-- <div class="align-center">
-    <h2 class="text-center">ORDER DETAIL</h2>
-    <table class="datatable" border="1">
-      <tr class="datatable">
-        <th>No.</th>
-        <th>Prod.ID</th>
-        <th>Prod.name</th>
-        <th>Image</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Amount</th>
-      </tr>
-      <%  for (var [i, item] of order.items.entries()) {  %>
-      <tr class="datatable">
-        <td><%=(i+1)%></td>
-        <td><%=item.product._id%></td>
-        <td><%=item.product.name%></td>
-        <td><img src="data:image/jpg;base64,<%=item.product.image%>" width="70" height="70" /></td>
-        <td><%=item.product.price%></td>
-        <td><%=item.quantity%></td>
-        <td><%=item.product.price * item.quantity%></td>
-      </tr>
-      <%  } %>
-    </table>
-  </div>
-  <%  } %> -->
   <div class="dashboard-wrapper">
     <br /><br /><br /><br />
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
       <div class="card">
-        <h5 class="card-header">Order List</h5>
+        <h2 class="card-header text-center">Order List</h2>
         <div class="card-body p-0">
           <div class="table-responsive">
             <table class="table">
@@ -82,28 +22,28 @@
                   <th class="border-0">Cust.name</th>
                   <th class="border-0">Cust.phone</th>
                   <th class="border-0">Total</th>
-                  <th class="border-0">Quantity</th>
-                  <th class="border-0">Amount</th>
+                  <th class="border-0">Status</th>
+                  <th class="border-0">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <%  for (var item of orders) { %>
-                  <tr class="datatable" onclick="window.location='./listorder?id=<%=item._id%>'">
-                    <th><%=item._id%></th>
-                    <td><%=new Date(item.cdate).toLocaleString()%></td>
-                    <td><%=item.customer.name%></td>
-                    <td><%=item.customer.phone%></td>
-                    <td><%=item.total%></td>
-                    <td><%=item.status%></td>
-                    <td>
-                      <%  if (item.status == 'PENDING') {  %>
-                      <a href="./updatestatus?status=APPROVED&id=<%=item._id%>">APPROVE</a>
-                      ||
-                      <a href="./updatestatus?status=CANCELED&id=<%=item._id%>">CANCEL</a>
-                      <%  } %>
-                    </td>
-                  </tr>
-                  <%  } %>
+                <tr class="datatable" onclick="window.location='./listorder?id=<%=item._id%>'">
+                  <th><%=item._id%></th>
+                  <td><%=new Date(item.cdate).toLocaleString()%></td>
+                  <td><%=item.customer.name%></td>
+                  <td><%=item.customer.phone%></td>
+                  <td><%=item.total%></td>
+                  <td><%=item.status%></td>
+                  <td>
+                    <%  if (item.status == 'PENDING') {  %>
+                    <a href="./updatestatus?status=APPROVED&id=<%=item._id%>">APPROVE</a>
+                    ||
+                    <a href="./updatestatus?status=CANCELED&id=<%=item._id%>">CANCEL</a>
+                    <%  } %>
+                  </td>
+                </tr>
+                <%  } %>
               </tbody>
             </table>
           </div>
@@ -113,7 +53,7 @@
     <%  if (order) { %>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
       <div class="card">
-        <h5 class="card-header">ORDER DETAIL</h5>
+        <h2 class="card-header text-center">ORDER DETAIL</h2>
         <div class="card-body p-0">
           <div class="table-responsive">
             <table class="table">
@@ -124,22 +64,22 @@
                   <th class="border-0">Prod.name</th>
                   <th class="border-0">Image</th>
                   <th class="border-0">Price</th>
-                  <th class="border-0">Status</th>
-                  <th class="border-0">Action</th>
+                  <th class="border-0">Quantity</th>
+                  <th class="border-0">Amount</th>
                 </tr>
               </thead>
               <tbody>
                 <%  for (var [i, item] of order.items.entries()) {  %>
-                  <tr class="datatable">
-                    <td><%=(i+1)%></td>
-                    <td><%=item.product._id%></td>
-                    <td><%=item.product.name%></td>
-                    <td><img src="data:image/jpg;base64,<%=item.product.image%>" width="70" height="70" /></td>
-                    <td><%=item.product.price%></td>
-                    <td><%=item.quantity%></td>
-                    <td><%=item.product.price * item.quantity%></td>
-                  </tr>
-                  <%  } %>
+                <tr class="datatable">
+                  <td><%=(i+1)%></td>
+                  <td><%=item.product._id%></td>
+                  <td><%=item.product.name%></td>
+                  <td><img src="data:image/jpg;base64,<%=item.product.image%>" width="70" height="70" /></td>
+                  <td><%=item.product.price%></td>
+                  <td><%=item.quantity%></td>
+                  <td><%=item.product.price * item.quantity%></td>
+                </tr>
+                <%  } %>
               </tbody>
             </table>
           </div>
@@ -147,8 +87,8 @@
       </div>
     </div>
     <%  } %>
+    <%- include('./Layout/footer')%>
   </div>
-  <%- include('./Layout/footer')%>
   <%- include('./Layout/foot')%>
 </body>
 
