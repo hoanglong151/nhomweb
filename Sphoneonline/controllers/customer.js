@@ -4,8 +4,8 @@ var router = express.Router();
 var MyUtil = require("../utils/MyUtil.js");
 var EmailUtil = require("../utils/EmailUtil.js");
 // daos
-//var pathDAO = "../daos/mongodb";
-var pathDAO = "../daos/mongoose";
+var pathDAO = "../daos/mongodb";
+//var pathDAO = "../daos/mongoose";
 var CategoryDAO = require(pathDAO + "/CategoryDAO.js");
 var ProductDAO = require(pathDAO + "/ProductDAO.js");
 var CustomerDAO = require(pathDAO + "/CustomerDAO.js");
