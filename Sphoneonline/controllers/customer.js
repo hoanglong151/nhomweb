@@ -13,8 +13,8 @@ var OrderDAO = require(pathDAO + "/OrderDAO.js");
 // routes
 router.get(['/', '/home'], async function (req, res) {
   var categories = await CategoryDAO.selectAll();
-  var newproducts = await ProductDAO.selectTopNew(3);
-  var hotproducts = await ProductDAO.selectTopHot(3);
+  var newproducts = await ProductDAO.selectTopNew(4);
+  var hotproducts = await ProductDAO.selectTopHot(4);
   var allproducts = await ProductDAO.selectAll();
   res.render('../views/customer/homeLayout.ejs', { cats: categories, newprods: newproducts, hotprods: hotproducts ,allprods :allproducts });
 });
@@ -30,6 +30,13 @@ router.get('/hotProducts', async function (req, res) {
   var _cid = req.query.catID; // /listproduct?catID=XXX
   var hotproducts = await ProductDAO.selectTopHot(3);
   res.render('../views/customer/hotProducts.ejs',{ cats: categories, hotprods: hotproducts });
+});
+router.get('/allProducts', async function (req, res) {
+  var categories = await CategoryDAO.selectAll();
+  var _cid = req.query.catID; // /listproduct?catID=XXX
+  var allproducts = await ProductDAO.selectAll();
+  var products = await ProductDAO.selectByCatID(_cid);
+  res.render('../views/customer/allProducts.ejs',{ cats: categories, allprods : allproducts , prods : products});
 });
 router.get('/newProducts', async function (req, res) {
   var categories = await CategoryDAO.selectAll();
@@ -179,6 +186,10 @@ router.get('/remove2cart', function (req, res) {
     }
   }
   res.redirect('./mycart');
+});
+router.get('/clear2cart', function (req, res) {
+  delete req.session.mycart;
+  res.redirect('./allProducts');
 });
 router.get('/checkout', async function (req, res) {
   if (req.session.customer) {
