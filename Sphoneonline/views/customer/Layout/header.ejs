@@ -4,7 +4,7 @@
     <header class="header-v4">
         <!-- Header desktop -->
         <div class="container-menu-desktop">
-            <!-- Topbar -->
+            <!-- Topbar 
             <div class="top-bar">
                 <div class="content-topbar flex-sb-m h-full container">
                     <div class="left-top-bar">
@@ -29,13 +29,13 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="wrap-menu-desktop how-shadow1" style="top: 40px;">
                 <nav class="limiter-menu-desktop container">
 
                     <!-- Logo desktop -->
-                    <a class="logo" href="#">
+                    <a class="logo" href="./">
                         <img alt="IMG-LOGO" src="images/icons/logo-01.png">
                     </a>
 
@@ -43,43 +43,7 @@
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li>
-                                <a href="index.html">Home</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Homepage 1</a></li>
-                                    <li><a href="home-02.html">Homepage 2</a></li>
-                                    <li><a href="home-03.html">Homepage 3</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="product.html">Account</a>
-                                <ul class="sub-menu">
-                                    <%  if (session.customer) {  %>
-                                    <li>Hello <b><%=session.customer.name%></b></li>
-                                    <li><a href="./logout">Logout</a></li>
-                                    <li><a href="./myprofile">My profile</a></li>
-                                    <li><a href="./myorders">My orders</a></li>
-                                    <%  } else {  %>
-                                    <li><a href="./login">Login</a></li>
-                                    <li><a href="./signup">Sign-up</a></li>
-                                    <%  } %>
-                                </ul>
-                            </li>
-
-                            <li class="label1" data-label1="hot">
-                                <a href="shoping-cart.html">Features</a>
-                            </li>
-
-                            <li>
-                                <a href="blog.html">Blog</a>
-                            </li>
-
-                            <li>
-                                <a href="about.html">About</a>
-                            </li>
-
-                            <li>
-                                <a href="contact.html">Contact</a>
+                                <a href="./">Home</a>
                             </li>
                         </ul>
                     </div>
@@ -91,11 +55,6 @@
                             data-notify=<%= (session.mycart) ? session.mycart.length : 0 %>>
                             <a href="./mycart"><i class="zmdi zmdi-shopping-cart clblack"></i></a>
                         </div>
-                        
-                        <a class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" href="#"
-                            data-notify="0">
-                            <i class="zmdi zmdi-favorite-outline"></i>
-                        </a>
                     </div>
                 </nav>
             </div>
