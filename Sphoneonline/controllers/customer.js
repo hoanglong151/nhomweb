@@ -25,6 +25,18 @@ router.get('/listproduct', async function (req, res) {
   var products = await ProductDAO.selectByCatID(_cid);
   res.render('../views/customer/listproduct.ejs', { cats: categories, prods: products });
 });
+router.get('/hotProducts', async function (req, res) {
+  var categories = await CategoryDAO.selectAll();
+  var _cid = req.query.catID; // /listproduct?catID=XXX
+  var hotproducts = await ProductDAO.selectTopHot(3);
+  res.render('../views/customer/hotProducts.ejs',{ cats: categories, hotprods: hotproducts });
+});
+router.get('/newProducts', async function (req, res) {
+  var categories = await CategoryDAO.selectAll();
+  var _cid = req.query.catID; // /listproduct?catID=XXX
+  var newproducts = await ProductDAO.selectTopNew(3);
+  res.render('../views/customer/newProducts.ejs',{ cats: categories, newprods: newproducts });
+});
 router.post('/search', async function (req, res) {
   var categories = await CategoryDAO.selectAll();
   var keyword = req.body.txtKeyword;
