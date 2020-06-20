@@ -8,8 +8,8 @@ var upload = multer({});
 var MyUtil = require("../utils/MyUtil.js");
 var EmailUtil = require("../utils/EmailUtil.js");
 // daos
-var pathDAO = "../daos/mongodb";
-//var pathDAO = "../daos/mongoose";
+// var pathDAO = "../daos/mongodb";
+var pathDAO = "../daos/mongoose";
 var AdminDAO = require(pathDAO + "/AdminDAO.js");
 var OrderDAO = require(pathDAO + "/OrderDAO.js");
 var CategoryDAO = require(pathDAO + "/CategoryDAO.js");
