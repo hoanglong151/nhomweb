@@ -38,7 +38,6 @@
 </head>
 
 <body class="animsition">
-	<!-- <%- include('./_inform.ejs') %> -->
 	<!-- Header -->
 	<header class="header-v3">
 		<!-- Header desktop -->
@@ -48,30 +47,47 @@
 
 					<!-- Logo desktop -->
 					<a href="./" class="logo">
-						<img src="images/icons/logo-02.png" alt="IMG-LOGO">
+						<img src="images/LTG.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-                            <li>
-                                <a href="./allProducts">All Products</a>
-                            </li>
-                        </ul>
-						<ul class="main-menu">
-							<%  if (typeof(cats) !== 'undefined') { for (var cat of cats) { %>
-								<li class="menu"><a href="./listproduct?catID=<%=cat._id%>"><%=cat.name%></a></li>
-								<%  } } %>														
-						</ul>
+							<li>
+								<a>My Account</a>
+								<ul class="sub-menu">
+									<%  if (session.customer) {  %>
+										Hello <b><%=session.customer.name%></b> 
+										<li><a href="./logout">Logout</a></li> 
+										<li><a href="./myprofile">My profile</a></li> 
+										<li><a href="./myorders">My orders</a></li>
+									<%  } else {  %>
+										<li><a href="./login">Login</a></li> 
+										<li><a href="./signup">Sign-up</a></li>										
+									<%  } %>
+								</ul>
+							</li>
 
+							<ul class="main-menu">
+								<li>
+									<a href="./allProducts">All Products</a>
+								</li>
+							</ul>
+							<ul class="main-menu">
+								<%  if (typeof(cats) !== 'undefined') { for (var cat of cats) { %>
+								<li class="menu"><a href="./listproduct?catID=<%=cat._id%>"><%=cat.name%></a></li>
+								<%  } } %>
+							</ul>
+						</ul>
 					</div>
 
-					<!-- Icon header -->	
+					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 						<div class="flex-c-m h-full p-r-25 bor6">
-								<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify=<%= (session.mycart) ? session.mycart.length : 0 %>>
-									<a href="./mycart"><i class="zmdi zmdi-shopping-cart clwhite"></i></a>
-								</div>
+							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
+								data-notify=<%= (session.mycart) ? session.mycart.length : 0 %>>
+								<a href="./mycart"><i class="zmdi zmdi-shopping-cart clwhite"></i></a>
+							</div>
 						</div>
 
 						<div class="flex-c-m h-full p-lr-19">
@@ -79,7 +95,7 @@
 								<i class="zmdi zmdi-menu"></i>
 							</div>
 						</div>
-					</div>			
+					</div>
 				</nav>
 			</div>
 		</div>
@@ -120,16 +136,6 @@
 						<a href="./" class="stext-102 cl2 hov-cl1 trans-04">
 							Home
 						</a>
-					</li>
-					<li class="p-b-13">
-						<a href="./myprofile" class="stext-102 cl2 hov-cl1 trans-04">
-							My Account
-						</a>
-					</li>
-					<li class="p-b-13">
-						<a href="./login" class="stext-102 cl2 hov-cl1 trans-04">
-							
-							Login</a>
 					</li>
 				</ul>
 
@@ -278,11 +284,11 @@
 						</button>
 						<form action="./search" method="POST" class="search">
 
-                            <input type="search" name="txtKeyword" placeholder="Enter keyword" placeholder="Search"
-                                class="mtext-107 cl2 size-114 plh2 p-r-15" required
-                                oninvalid="this.setCustomValidity('Keyword không để trống')"
-                                oninput="this.setCustomValidity('')" />
-                        </form>
+							<input type="search" name="txtKeyword" placeholder="Enter keyword" placeholder="Search"
+								class="mtext-107 cl2 size-114 plh2 p-r-15" required
+								oninvalid="this.setCustomValidity('Keyword không để trống')"
+								oninput="this.setCustomValidity('')" />
+						</form>
 					</div>
 				</div>
 			</div>
@@ -324,16 +330,6 @@
 				<%  } %>
 			</div>
 			<%  } %>
-			<!-- Pagination -->
-			<div class="flex-c-m flex-w w-full p-t-38">
-				<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
-					1
-				</a>
-
-				<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
-					2
-				</a>
-			</div>
 		</div>
 	</section>
 
@@ -549,10 +545,10 @@
 							</div>
 						</div>
 					</div>
-					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 
 	<!--===============================================================================================-->

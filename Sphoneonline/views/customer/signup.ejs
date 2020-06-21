@@ -1,66 +1,107 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+  <title>Login V18</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->
+  <link rel="icon" type="image/png" href="../../logincustomer/images/icons/favicon.ico" />
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/vendor/bootstrap/css/bootstrap.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/vendor/animate/animate.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/vendor/css-hamburgers/hamburgers.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/vendor/animsition/css/animsition.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/vendor/select2/select2.min.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/vendor/daterangepicker/daterangepicker.css">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/css/util.css">
+  <link rel="stylesheet" type="text/css" href="../../logincustomer/css/main.css">
+  <!--===============================================================================================-->
 </head>
 
-<body class="customer">
-  <%- include('./_menu.ejs') %>
-  <br/>
-  <%- include('./_inform.ejs') %>
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<body style="background-color: #666666;">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <form action="./signup" method="POST" class="login100-form validate-form">
+          <span class="login100-form-title p-b-43">
+            SIGN-UP
+          </span>
 
 
-<div class="container">
+          <div class="wrap-input100 validate-input" data-validate="Username is required">
+            <input class="input100" type="text" name="txtUsername" required />
+            <span class="focus-input100"></span>
+            <span class="label-input100">Username</span>
+          </div>
 
-<hr>
 
-  <div class="card bg-light">
-    <article class="card-body mx-auto" style="max-width: 400px;"></article>
-    <h1 class="card-title mt-3 text-center">Create Account</h1>
-    <p class="text-center">Get started with your free account</p>
-    <p>
-      <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
-      <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
-    </p>
-    <p class="divider-text">
-      <span class="bg-light">OR</span>
-  </p>
-    <form action="./signup" method="POST">
-      
-      <table class="align-center">
-        <tr>
-          <td>Username</td>
-          <td><input type="text" name="txtUsername" required /></td>
-        </tr>
-        <tr>
-          <td>Password</td>
-          <td><input type="password" name="txtPassword" pattern=".{3,}" required /></td>
-        </tr>
-        <tr>
-          <td>Name</td>
-          <td><input type="text" name="txtName" required /></td>
-        </tr>
-        <tr>
-          <td>Phone</td>
-          <td><input type="tel" name="txtPhone" pattern="0[0-9]{9}" required /></td>
-        </tr>
-        <tr>
-          <td>Email</td>
-          <td><input type="email" name="txtEmail" required /></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><input type="submit" value="SIGN-UP" /></td>
-        </tr>
-      </table>
-    </form>
+          <div class="wrap-input100 validate-input" data-validate="Password is required">
+            <input class="input100" type="password" name="txtPassword" pattern=".{3,}" required />
+            <span class="focus-input100"></span>
+            <span class="label-input100">Password</span>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Name is required">
+            <input class="input100" type="text" name="txtName" required />
+            <span class="focus-input100"></span>
+            <span class="label-input100">Name</span>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Phone is required">
+            <input class="input100" type="text" name="txtPhone" pattern="0[0-9]{9}" required />
+            <span class="focus-input100"></span>
+            <span class="label-input100">Phone</span>
+          </div>
+
+          <div class="wrap-input100 validate-input" data-validate="Email is required">
+            <input class="input100" type="text" name="txtEmail" required />
+            <span class="focus-input100"></span>
+            <span class="label-input100">Email</span>
+          </div>
+
+
+          <div class="container-login100-form-btn">
+            <input class="login100-form-btn" type="submit" value="Sign Up" />
+          </div>
+
+          <div class="text-center p-t-46 p-b-20">
+            <a href="./login"><b>Login</b></a> for account
+          </div>
+        </form>
+        <div class="login100-more" style="background-image: url('../../logincustomer/images/bg-02.jpg');">
+        </div>
+      </div>
+    </div>
   </div>
+  <!--===============================================================================================-->
+  <script src="../../logincustomer/vendor/jquery/jquery-3.2.1.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="../../logincustomer/vendor/animsition/js/animsition.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="../../logincustomer/vendor/bootstrap/js/popper.js"></script>
+  <script src="../../logincustomer/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="../../logincustomer/vendor/select2/select2.min.js"></script>
+  <!--===============================================================================================-->
+  <script src="../../logincustomer/vendor/daterangepicker/moment.min.js"></script>
+  <script src="../../logincustomer/vendor/daterangepicker/daterangepicker.js"></script>
+  <!--===============================================================================================-->
+  <script src="../../logincustomer/vendor/countdowntime/countdowntime.js"></script>
+  <!--===============================================================================================-->
+  <script src="../../logincustomer/js/main.js"></script>
+
 </body>
 
 </html>
