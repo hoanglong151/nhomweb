@@ -28,31 +28,31 @@
                             </li>
                         </ul>
                         <ul class="main-menu">
-                        <li>
-                            <a>My Account</a>
-                            <ul class="sub-menu">
-                                <%  if (session.customer) {  %>
-                                    Hello <b><%=session.customer.name%></b> 
-                                    <li><a href="./logout">Logout</a></li> 
-                                    <li><a href="./myprofile">My profile</a></li> 
+                            <li>
+                                <a>My Account</a>
+                                <ul class="sub-menu">
+                                    <%  if (session.customer) {  %>
+                                    Hello <b><%=session.customer.name%></b>
+                                    <li><a href="./logout">Logout</a></li>
+                                    <li><a href="./myprofile">My profile</a></li>
                                     <li><a href="./myorders">My orders</a></li>
-                                <%  } else {  %>
-                                    <li><a href="./login">Login</a></li> 
-                                    <li><a href="./signup">Sign-up</a></li>										
-                                <%  } %>
-                            </ul>
-                        </li>
-                    </ul>
+                                    <%  } else {  %>
+                                    <li><a href="./login">Login</a></li>
+                                    <li><a href="./signup">Sign-up</a></li>
+                                    <%  } %>
+                                </ul>
+                            </li>
+                        </ul>
                         <ul class="main-menu">
                             <li>
                                 <a href="./allProducts">All Products</a>
+                                <ul class="sub-menu">
+                                    <%  if (typeof(cats) !== 'undefined') { for (var cat of cats) { %>
+                                    <li class="menu"><a href="./listproduct?catID=<%=cat._id%>"><%=cat.name%></a>
+                                    </li>
+                                    <%  } } %>
+                                </ul>
                             </li>
-                        </ul>
-                        <ul class="main-menu">                      
-                            <%  if (typeof(cats) !== 'undefined') { for (var cat of cats) { %>
-                      
-                            <li class="menu"><a href="./listproduct?catID=<%=cat._id%>"><%=cat.name%></a></li>
-                            <%  } } %>
                         </ul>
                     </div>
 
