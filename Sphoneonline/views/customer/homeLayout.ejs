@@ -57,13 +57,13 @@
 								<a>My Account</a>
 								<ul class="sub-menu">
 									<%  if (session.customer) {  %>
-										Hello <b><%=session.customer.name%></b> 
-										<li><a href="./logout">Logout</a></li> 
-										<li><a href="./myprofile">My profile</a></li> 
-										<li><a href="./myorders">My orders</a></li>
+									Hello <b><%=session.customer.name%></b>
+									<li><a href="./logout">Logout</a></li>
+									<li><a href="./myprofile">My profile</a></li>
+									<li><a href="./myorders">My orders</a></li>
 									<%  } else {  %>
-										<li><a href="./login">Login</a></li> 
-										<li><a href="./signup">Sign-up</a></li>										
+									<li><a href="./login">Login</a></li>
+									<li><a href="./signup">Sign-up</a></li>
 									<%  } %>
 								</ul>
 							</li>
@@ -71,12 +71,13 @@
 							<ul class="main-menu">
 								<li>
 									<a href="./allProducts">All Products</a>
+									<ul class="sub-menu">
+										<%  if (typeof(cats) !== 'undefined') { for (var cat of cats) { %>
+										<li class="menu"><a href="./listproduct?catID=<%=cat._id%>"><%=cat.name%></a>
+										</li>
+										<%  } } %>
+									</ul>
 								</li>
-							</ul>
-							<ul class="main-menu">
-								<%  if (typeof(cats) !== 'undefined') { for (var cat of cats) { %>
-								<li class="menu"><a href="./listproduct?catID=<%=cat._id%>"><%=cat.name%></a></li>
-								<%  } } %>
 							</ul>
 						</ul>
 					</div>
@@ -139,13 +140,15 @@
 					</li>
 				</ul>
 				<div class="sidebar-gallery w-full p-tb-30">
-                    <div class="flex-w flex-sb p-t-36 gallery-lb">
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-100">
-                            <img src="images/LTG.png" style="width: 400px; height: 300px; color: transparent; padding-right: 100px;" alt="IMG-LOGO">
-                        </div>
-                    </div>
-                </div>
+					<div class="flex-w flex-sb p-t-36 gallery-lb">
+						<!-- item gallery sidebar -->
+						<div class="wrap-item-gallery m-b-100">
+							<img src="images/LTG.png"
+								style="width: 400px; height: 300px; color: transparent; padding-right: 100px;"
+								alt="IMG-LOGO">
+						</div>
+					</div>
+				</div>
 
 				<div class="sidebar-gallery w-full">
 					<span class="mtext-101 cl5">
@@ -153,7 +156,9 @@
 					</span>
 
 					<p class="stext-108 cl6 p-t-27">
-						SPhone sẽ mang bạn đến 1 thế giới công nghệ hoàn toàn mới , SPhoneSystem là một website bán điện thoại uy tín, với giao diện ưa nhìn khách hàng có thể đặt hàng và xem tất cả thông tin chi tiết của sản phẩm. Và sẽ được hưởng nhiều ưu đãi khi mua hàng trên website.
+						SPhone sẽ mang bạn đến 1 thế giới công nghệ hoàn toàn mới , SPhoneSystem là một website bán điện
+						thoại uy tín, với giao diện ưa nhìn khách hàng có thể đặt hàng và xem tất cả thông tin chi tiết
+						của sản phẩm. Và sẽ được hưởng nhiều ưu đãi khi mua hàng trên website.
 					</p>
 				</div>
 			</div>
@@ -316,6 +321,7 @@
 				</div>
 				<%  } %>
 			</div>
+
 			<%  if (hotprods) { %>
 			<h2 class="text-center">HOT PRODUCTS</h2>
 			<br />
