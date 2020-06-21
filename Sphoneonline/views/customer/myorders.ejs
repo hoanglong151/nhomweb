@@ -1,64 +1,84 @@
 <html>
 
 <head>
-  <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+  <%- include('./Layout/head')%>
 </head>
 
 <body class="customer">
-  <%- include('./_menu.ejs') %>
-  <%- include('./_inform.ejs') %>
-  <%  if (orders) { %>
-  <div class="align-center">
-    <h2 class="text-center">ORDER LIST</h2>
-    <table class="datatable" border="1">
-      <tr class="datatable">
-        <th>ID</th>
-        <th>Creation date</th>
-        <th>Cust.name</th>
-        <th>Cust.phone</th>
-        <th>Total</th>
-        <th>Status</th>
-      </tr>
-      <%  for (var item of orders) { %>
-      <tr class="datatable" onclick="window.location='./myorders?id=<%=item._id%>'">
-        <th><%=item._id%></th>
-        <td><%=new Date(item.cdate).toLocaleString()%></td>
-        <td><%=item.customer.name%></td>
-        <td><%=item.customer.phone%></td>
-        <td><%=item.total%></td>
-        <td><%=item.status%></td>
-      </tr>
-      <%  } %>
-    </table>
-  </div>
-  <%  } %>
-  <%  if (order) { %>
-  <div class="align-center">
-    <h2 class="text-center">ORDER DETAIL</h2>
-    <table class="datatable" border="1">
-      <tr class="datatable">
-        <th>No.</th>
-        <th>Prod.ID</th>
-        <th>Prod.name</th>
-        <th>Image</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Amount</th>
-      </tr>
-      <%  for (var [i, item] of order.items.entries()) {  %>
-      <tr class="datatable">
-        <td><%=(i+1)%></td>
-        <td><%=item.product._id%></td>
-        <td><%=item.product.name%></td>
-        <td><img src="data:image/jpg;base64,<%=item.product.image%>" width="70" height="70" /></td>
-        <td><%=item.product.price%></td>
-        <td><%=item.quantity%></td>
-        <td><%=item.product.price * item.quantity%></td>
-      </tr>
-      <%  } %>
-    </table>
-  </div>
-  <%  } %>
+  <%- include('./Layout/header')%>
+  <form class="bg0 p-t-75 p-b-85">
+    <div class="container">
+      <div class="row">
+        <%  if (orders) { %>
+        <div class="col-lg-6 col-xl-7 m-lr-auto m-b-50" style="margin-right: 500px;">
+          <div class="m-l-25 m-r--38 m-lr-0-xl" style="width: 1000px;">
+            <div class="wrap-table-shopping-cart">
+              <table class="table-shopping-cart">
+                <h2 class="text-center">ORDER LIST</h2><br />
+                <tbody>
+                  <tr class="table_head">
+                    <th class="column-1">Creation date</th>
+                    <th class="column-2">Cust.name</th>
+                    <th class="column-3">Cust.phone</th>
+                    <th class="column-4">Total</th>
+                    <th class="column-5">Status</th>
+                  </tr>
+                  <%  for (var item of orders) { %>
+                  <tr class="table_row" style="height: 100px;" onclick="window.location='./myorders?id=<%=item._id%>'">
+                    <td class="column-1"><b><%=new Date(item.cdate).toLocaleString()%></b></td>
+                    <td class="column-2"><b><%=item.customer.name%></b></td>
+                    <td class="column-3">
+                      <b><%=item.customer.phone%></b>
+                    </td>
+                    <td class="column-4"><b><%=item.total%></b></td>
+                    <td class="column-5"><b><%=item.status%></b></td>
+                  </tr>
+                  <%  } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <%  } %>
+        <%  if (order) { %>
+        <div class="col-lg-12 col-xl-7 m-lr-auto m-b-50" style="margin-right: 500px;">
+          <div class="m-l-25 m-r--38 m-lr-0-xl" style="width: 1000px;">
+            <div class="wrap-table-shopping-cart">
+              <table class="table-shopping-cart">
+                <h2 class="text-center">ORDER DETAIL</h2><br />
+                <tbody>
+                  <tr class="table_head">
+                    <th class="column-1">No.</th>
+                    <th class="column-3" style="width: 100px;">Prod.name</th>
+                    <th class="column-4">Image</th>
+                    <th class="column-5" style="width: 150px;">Price</th>
+                    <th class="column-6 text-center">Quantity</th>
+                    <th class="column-7" style="width: 100px;">Amount</th>
+                  </tr>
+                  <%  for (var [i, item] of order.items.entries()) {  %>
+                  <tr class="datatable">
+                    <td class="column-1"><b><%=(i+1)%></b></td>
+                    <td class="column-3" style="width: 200px;"><b><%=item.product.name%></b></td>
+                    <td class="column-4"><img src="data:image/jpg;base64,<%=item.product.image%>" width="70"
+                        height="70" /></td>
+                    <td class="column-5" style="width: 200px;"><b><%=item.product.price%></b></td>
+                    <td class="column-6 text-center"><b><%=item.quantity%></b></td>
+                    <td class="column-7"><b><%=item.product.price * item.quantity%></b></td>
+                  </tr>
+                  <%  } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <%  } %>
+      </div>
+    </div>
+  </form>
+  <%- include('./Layout/footer')%>
+  <%- include('./Layout/foot')%>
+
+
 </body>
 
 </html>
